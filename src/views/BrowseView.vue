@@ -44,14 +44,15 @@
     }
     
     .link-background {
-      border-radius: 15px;
-      background-image:linear-gradient(#A8CA98,#5D8264);
-      display: flex;
-      justify-content: center;
-      width: 225px;
-      height: 500px;
-      align-self: flex-end;
-      }
+        border-radius: 15px;
+        background-image:linear-gradient(#A8CA98,#5D8264);
+        display: flex;
+         justify-content: center;
+         width: 190px;
+        /* height: 500px; */
+        min-height: 90vh;
+        align-self: flex-end;  
+  }
     
       .link-style {
         display: flex;

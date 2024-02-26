@@ -5,9 +5,11 @@
       <h1>My Little Library</h1>
     </div>
 
-    <div class ="leaves-background">
-      <p>hello (this is shown to show the different between tabs temp.)</p>
+  <div class="direction-fix">
+    <div class = "welcome-txt">
+      <p>Welcome to My Little Library</p>
     </div>
+  
 
     <div class="link-background link-style">
       <router-link to ="/" >Home</router-link>
@@ -16,6 +18,11 @@
       <router-link to = "/GoalsView">Goals</router-link>
     </div>
 
+    <!-- <div class ="leaves-background">
+      <p>hello (this is shown to show the different between tabs temp.)</p>
+    </div> -->
+    
+  </div>
   </div>
 </template>
 
@@ -30,8 +37,6 @@ export default {
 <style scoped>
 
 .site-background {
-  display: flex;
-  flex-direction: column; 
   border-radius: 15px;
   background-image:linear-gradient(#A3B18A, #626d49);
   min-height: 100vh;
@@ -40,8 +45,24 @@ export default {
 }
 
 .title{
+  display:flex;
   text-align: center;
+  font-size: large;
+  flex-direction: column; 
+}
 
+.direction-fix {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.welcome-txt {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  margin: auto;
+  
 }
 
 .link-background {
@@ -49,9 +70,11 @@ export default {
   background-image:linear-gradient(#A8CA98,#5D8264);
   display: flex;
   justify-content: center;
-  width: 225px;
-  height: 500px;
+  width: 190px;
+  /* height: 500px; */
+  min-height: 90vh;
   align-self: flex-end;
+  
   }
 
   .link-style {
@@ -62,9 +85,12 @@ export default {
     font-size: 25px;
   }
 
-  .leaves-background{
+  /* .leaves-background{
     border-radius: 15px;
     border-color: black;
-    align-self: flex-end;  
-  }
+    align-content:flex-end;
+    width: 100px;
+    height: 500px;
+    text-align: center;
+  } */
 </style>
