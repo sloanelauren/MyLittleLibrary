@@ -6,6 +6,9 @@
             <button @click ="search">Search</button>
           </div>
         
+          <div v-if = "loading" class = "loading-img">
+            <img src = "\src\assets\Loadingscr.gif" alt = "Loading..." class = "loading-gif"> 
+          </div>
 
             <div v-if ="searchResults.length > 0" class ="search-results results-txt">
           <h2>Search Results</h2>
@@ -40,7 +43,8 @@
             return {
                 searchQuery: '',
                 searchResults: [],
-                searchError: ''
+                searchError: '',
+                loading: false
             };
         },
         mounted() {
@@ -48,6 +52,8 @@
 
         methods: {
             async search() {
+              this.loading = true;
+              this.searchResults = [];
               try {
                 const response = await axios.get("https://openlibrary.org/search.json?", {
                   params:{
@@ -58,6 +64,8 @@
               } catch (error) {
                 console.error('Error Searching Books:', error);
                 this.searchError = 'An error occurred while searching books.';
+              } finally {
+                this.loading = false;
               }
           }
         }
@@ -111,6 +119,18 @@
           margin: auto;
           margin-top: 5px;
           margin-left: 30px;
+        }
+
+        .loading-img {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+
+        .loading-gif {
+          max-width: 120px;
         }
 
     </style>
