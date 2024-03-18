@@ -1,6 +1,6 @@
 # MyLittleLibrary
 
-This template should help get you started developing with Vue 3 in Vite.
+MyLittleLibrary is an open-source library website that allows users to browse, save, and set reading goals for themselves. 
 
 ## Recommended IDE Setup
 

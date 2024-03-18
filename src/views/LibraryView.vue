@@ -2,20 +2,20 @@
 
   <div class="site-background">
       <div class="title">
+        <img src="/src/assets/Leaves.png" style ="transform:scaleX(-1);">
         <h1>My Little Library</h1>
-      </div>
-  
-      <div class ="leaves-background">
-        <p>Library leaves (this is shown to show the different between tabs temp.)</p>
+        <img src="/src/assets/Leaves.png">
       </div>
   
       <div class="link-background link-style">
-        <router-link to ="/" >Home</router-link>
-        <router-link to = "/LibraryView" >Library</router-link>
-        <router-link to = "/BrowseView">Browse</router-link>
-        <router-link to = "/GoalsView">Goals</router-link>
+        <router-link class = "nav-link" to ="/" >Home</router-link>
+        <router-link class = "nav-link" to = "/LibraryView" >Library</router-link>
+        <router-link class = "nav-link" to = "/BrowseView">Browse</router-link>
+        <router-link class = "nav-link" to = "/GoalsView">Goals</router-link>
       </div>
   
+      
+      
     </div>
   </template>
   
@@ -24,47 +24,62 @@
   export default {
       name: 'LibraryView',
   }
+  
   </script>
   
   
   <style scoped>
   
   .site-background {
-    display: flex;
-    flex-direction: column; 
-    border-radius: 15px;
-    background-image:linear-gradient(#A3B18A, #626d49);
+    background-color: beige;
     min-height: 100vh;
-    margin:-5px;
+    margin: -8px; 
   }
   
   .title{
+    display:flex;
     text-align: center;
-  
+    font-size: large;
+      /* i did below */
+    flex-direction: row; 
+    justify-content: center; 
+  }
+  .title > h1 {
+    width: 20vw;
+  }
+  /* i did this below */
+  .title > img {
+    width: 40vw;
   }
   
+  
   .link-background {
-    border-radius: 15px;
     background-image:linear-gradient(#A8CA98,#5D8264);
     display: flex;
     justify-content: center;
-    width: 190px;
-    /* height: 500px; */
-    min-height: 90vh;
-    align-self: flex-end;
+    width: auto;
+    min-height: 35px;
+    
     }
   
     .link-style {
       display: flex;
       text-align: center;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: space-evenly;
       font-size: 25px;
     }
   
-    .leaves-background{
-      border-radius: 15px;
-      border-color: black;
-      align-self: flex-end;  
-    }
+    .nav-link {
+          color:beige;
+          text-decoration: none;
+          transition: color 0.3s;
+        }
+  
+        .nav-link:hover {
+          color: black;
+        }
+  
+  
+  
   </style>
