@@ -14,11 +14,10 @@
           <h2>Search Results</h2>
             </div> 
 
-          <ul>
-            <li v-for= "(book,index) in searchResults" :key="index">
-            {{ book.title }} 
-          </li>
-          </ul>
+            <div v-for= "(book,index) in searchResults" :key="index" class = "book-container">
+              <img v-if = "book.cover_i" :src = "'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt ="Book Cover" style = "max-width: 100px;">
+            {{ book.title }} by {{ book.author_name }}
+            </div>
 
         <div v-if="searchError" class="error-message results-txt">
         {{ searchError }}
@@ -131,6 +130,12 @@
 
         .loading-gif {
           max-width: 120px;
+        }
+
+        .book-container {
+          display:flex;
+          padding-left: 10px;
+          padding-bottom: 25px; 
         }
 
     </style>
