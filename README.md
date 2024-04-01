@@ -12,7 +12,7 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
-To setup MyLittleLibrary begin with cloning the repo. Then in the terminal run "npm install". 
+To setup MyLittleLibrary begin with cloning the repo, then in the terminal run "npm install". 
 
 ```sh
 npm install
@@ -20,7 +20,7 @@ npm install
 
 ### Compile and Hot-Reload for Development
 
-After installing npm, to run the website in the terminal write "npm run dev" and enjoy your Little Library!
+Once npm is installed, to launch the website in your terminal write "npm run dev" and enjoy your Little Library!
 
 ```sh
 npm run dev

@@ -14,7 +14,8 @@
           <h2>Search Results</h2>
             </div> 
 
-            <div v-for= "(book,index) in searchResults" :key="index" class = "book-container">
+            <div class = "book-container">
+            <div v-for= "(book,index) in searchResults" :key="index" class = "book-item">
               <img v-if = "book.cover_i" :src = "'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" alt ="Book Cover" style = "max-width: 100px;">
             {{ book.title }} by {{ book.author_name }}
             </div>
@@ -22,7 +23,7 @@
         <div v-if="searchError" class="error-message results-txt">
         {{ searchError }}
         </div>
-       
+       </div>
     
       </div>
     </template>
@@ -56,9 +57,17 @@
               try {
                 const response = await axios.get("https://openlibrary.org/search.json?", {
                   params:{
-                    q:this.searchQuery
+                    q:this.searchQuery,
+                    fields: 'key,title,author_name,cover_i'
                   }
                 });
+
+            response.data.docs.forEach(book => {
+              if (Array.isArray(book.author_name)) {
+              book.author_name = book.author_name.join(', ');
+            }
+          });
+
             this.searchResults = response.data.docs;
               } catch (error) {
                 console.error('Error Searching Books:', error);
@@ -134,8 +143,25 @@
 
         .book-container {
           display:flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
           padding-left: 10px;
           padding-bottom: 25px; 
         }
+
+        .book-item {
+        text-align: center;
+        margin: 10px;
+        background-color: #DCDCC6;
+        border-radius: 20px;
+        padding: 20px;
+        width: 150px;
+        height: auto;
+        }
+
+      .book-item img {
+      display: block;
+      margin: 0 auto 10px;
+      }
 
     </style>
