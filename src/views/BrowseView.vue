@@ -16,9 +16,22 @@
 
     <div class="book-container">
       <div v-for="(book, index) in searchResults" :key="index" class="book-item">
-        <img v-if="book.cover_i" :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'"
+        <img v-if="book.cover_i !== undefined" :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'"
           alt="Book Cover" style="max-width: 100px;">
+        <img v-else src="\src\assets\NoCoverAvailable1.png" alt="Default Cover" style="max-width: 125px;">
         {{ book.title }} by {{ book.author_name }}
+
+        <div>
+          <button @click="wanttoread" class="want-content">Want to Read</button>
+          <div class="dropdown">
+            <button class="dropbtn">▼</button>
+            <div class="dropdown-content">
+              <a href="">Want to Read</a>
+              <a href="">Currently Reading</a>
+              <a href="">Read</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div v-if="searchError" class="error-message results-txt">
@@ -76,6 +89,10 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+
+    async wanttoread() {
+
     }
   }
 }
@@ -99,7 +116,7 @@ export default {
   height: 20px;
   margin-top: 3px;
   justify-content: center;
-  padding-top: 4px;
+  padding-top: 6px;
 }
 
 .search-bar input {
@@ -108,6 +125,7 @@ export default {
   width: 300px;
   height: 45%;
   border-radius: 5px;
+  font-family: 'Bookmania-Regular';
 }
 
 .search-bar button {
@@ -121,6 +139,7 @@ export default {
   height: 25px;
   margin-top: 6px;
   line-height: 10px;
+  font-family: 'Bookmania-Regular';
 }
 
 .search-bar button:hover {
@@ -154,9 +173,13 @@ export default {
   justify-content: flex-start;
   padding-left: 10px;
   padding-bottom: 25px;
+  font-family: 'Bookmania-Regular';
 }
 
 .book-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
   margin: 10px;
   background-color: #DCDCC6;
@@ -170,5 +193,69 @@ export default {
 .book-item img {
   display: block;
   margin: 0 auto 10px;
+}
+
+.dropbtn {
+  background-image: linear-gradient(#A8CA98, #5D8264);
+  padding: 7px;
+  border: none;
+  color: beige;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-family: 'Bookmania-Regular';
+  font-size: 12px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-image: linear-gradient(#A8CA98, #5D8264);
+  border-radius: 5px;
+  font-size: 12px;
+  width: max-content;
+  line-height: 0.1;
+}
+
+.dropdown-content a {
+  color: beige;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Bookmania-Regular';
+}
+
+.dropdown-content a:hover {
+  color: #415b46;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #415b46;
+}
+
+.want-content {
+  background-image: linear-gradient(#A8CA98, #5D8264);
+  padding: 7px;
+  border: none;
+  color: beige;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-family: 'Bookmania-Regular';
+  width: 102px;
+  font-size: 12px;
+}
+
+.want-content:hover {
+  color: #415b46;
 }
 </style>

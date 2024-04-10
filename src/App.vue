@@ -1,17 +1,14 @@
-
-
 <template>
-  <div id="app" >
+  <div id="app" class="site-background">
     <router-view />
   </div>
 </template>
 
-<style scoped>
 
+<style scoped>
 .site-background {
   background-color: beige;
   min-height: 100vh;
-  margin: -8px; 
+  margin: -8px;
 }
-
 </style>

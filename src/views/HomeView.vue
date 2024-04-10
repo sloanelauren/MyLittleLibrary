@@ -5,6 +5,7 @@
     <NavBar />
     <div class="welcome-txt">
       <p>Welcome to My Little Library</p>
+      <img src="/src/assets/mylittlelibrarylogo1.png" style="height: 50px; height: 50px;">
     </div>
 
     <div v-if="loading" class="loading-img">
@@ -17,17 +18,21 @@
 
     <div class="book-container">
       <div v-for="(book, index) in bestSellers" :key="index" class="book-item">
-        <img v-if="book.cover_i" :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'"
+        <img v-if="book.cover_i !== undefined" :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'"
           alt="Book Cover" style="max-width: 100px;">
+        <img v-else src="\src\assets\NoCoverAvailable1.png" alt="Default Cover" style="max-width: 125px;">
         {{ book.title }} by {{ book.author_name }}
 
-        <div class="dropdown">
-          <button @click="" class="want-content">Want to Read</button>
-          <button class="dropbtn">▼</button>
-          <div class="dropdown-content">
-            <a href="">Want to Read</a>
-            <a href="">Currently Reading</a>
-            <a href="">Read</a>
+        <div>
+          <button @click="wantToRead(book)" class="want-content">{{ book.isAdded ? '✔' : 'Want to Read'
+            }}</button>
+          <div class="dropdown">
+            <button class="dropbtn">▼</button>
+            <div class="dropdown-content">
+              <a href="">Want to Read</a>
+              <a href="">Currently Reading</a>
+              <a href="">Read</a>
+            </div>
           </div>
         </div>
       </div>
@@ -85,6 +90,7 @@ export default {
           if (Array.isArray(book.author_name)) {
             book.author_name = book.author_name.join(', ');
           }
+          book.isAdded = false;
         });
 
         this.bestSellers = randomBestSellers;
@@ -94,6 +100,11 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+
+    wantToRead(book) {
+      // this.$emit('addToWantToRead', book);
+      book.isAdded = !book.isAdded;
     },
 
     shuffle(array) {
@@ -120,6 +131,12 @@ export default {
   text-align: center;
   font-family: "Blueberry";
   color: #415b46;
+  margin-bottom: 15px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 5px;
 }
 
 .results-txt {
@@ -130,6 +147,7 @@ export default {
   margin-left: 30px;
   padding-top: -15px;
   font-family: 'Bookmania-Regular';
+  margin-top: -15px;
 }
 
 .loading-img {
@@ -176,8 +194,10 @@ export default {
   padding: 7px;
   border: none;
   color: beige;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   font-family: 'Bookmania-Regular';
+  font-size: 12px;
 }
 
 .dropdown {
@@ -188,10 +208,13 @@ export default {
 .dropdown-content {
   display: none;
   position: absolute;
+  top: 100%;
+  right: 0;
   background-image: linear-gradient(#A8CA98, #5D8264);
-  min-width: 160px;
   border-radius: 5px;
   font-size: 12px;
+  width: max-content;
+  line-height: 0.1;
 }
 
 .dropdown-content a {
@@ -210,7 +233,7 @@ export default {
   display: block;
 }
 
-.dropdown:hover .dropbtn .want-content {
+.dropdown:hover .dropbtn {
   background-color: #415b46;
 }
 
@@ -219,11 +242,14 @@ export default {
   padding: 7px;
   border: none;
   color: beige;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   font-family: 'Bookmania-Regular';
+  width: 102px;
+  font-size: 12px;
 }
 
 .want-content:hover {
-  background-color: #415b46;
+  color: #415b46;
 }
 </style>
