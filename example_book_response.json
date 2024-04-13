@@ -1,0 +1,37 @@
+{
+    "numFound": 710,
+    "start": 0,
+    "numFoundExact": true,
+    "docs": [
+        {
+            "author_name": [
+                "George MacDonald"
+            ],
+            "cover_i": 14358814,
+            "key": "/works/OL15450W",
+            "title": "Phantastes"
+        },
+        {
+            "author_name": [
+                "Sir Walter Scott"
+            ],
+            "cover_i": 314235,
+            "key": "/works/OL863808W",
+            "title": "Ivanhoe"
+        },
+        {
+            "author_name": [
+                "Wilkie Collins",
+                "Pieter Koster",
+                "Sandra Kemp",
+                "Andronum"
+            ],
+            "cover_i": 8237041,
+            "key": "/works/OL176092W",
+            "title": "The Moonstone"
+        }
+    ],
+    "num_found": 710,
+    "q": "popular romance",
+    "offset": null
+}

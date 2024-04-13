@@ -29,9 +29,12 @@
           <div class="dropdown">
             <button class="dropbtn">▼</button>
             <div class="dropdown-content">
-              <a href="">Want to Read</a>
-              <a href="">Currently Reading</a>
-              <a href="">Read</a>
+              <button @click="wantToRead(book)" class="dropdown-button">{{ book.isAdded ? '✔' : 'Want to Read'
+                }}</button>
+              <button @click="currentRead(book)" class="dropdown-button">{{ book.isAddedCur ? '✔' : 'Currently Reading'
+                }}</button>
+              <button @click="Read(book)" class="dropdown-button">{{ book.isAddedRead ? '✔' : 'Read'
+                }}</button>
             </div>
           </div>
         </div>
@@ -91,6 +94,8 @@ export default {
             book.author_name = book.author_name.join(', ');
           }
           book.isAdded = false;
+          book.isAddedCur = false;
+          book.isAddedRead = false;
         });
 
         this.bestSellers = randomBestSellers;
@@ -103,8 +108,39 @@ export default {
     },
 
     wantToRead(book) {
-      // this.$emit('addToWantToRead', book);
       book.isAdded = !book.isAdded;
+      let books = localStorage.getItem("books");
+      if (books != undefined) {
+        books = JSON.parse(books);
+      } else {
+        books = []
+      }
+      books.push(book);
+      localStorage.setItem("books", JSON.stringify(books));
+    },
+
+    currentRead(book) {
+      book.isAddedCur = !book.isAddedCur;
+      let booksCur = localStorage.getItem("booksCur");
+      if (booksCur != undefined) {
+        booksCur = JSON.parse(booksCur);
+      } else {
+        booksCur = []
+      }
+      booksCur.push(book);
+      localStorage.setItem("booksCur", JSON.stringify(booksCur));
+    },
+
+    Read(book) {
+      book.isAddedRead = !book.isAddedRead;
+      let booksRead = localStorage.getItem("booksRead");
+      if (booksRead != undefined) {
+        booksRead = JSON.parse(booksRead);
+      } else {
+        booksRead = []
+      }
+      booksRead.push(book);
+      localStorage.setItem("booksRead", JSON.stringify(booksRead));
     },
 
     shuffle(array) {
@@ -210,7 +246,6 @@ export default {
   position: absolute;
   top: 100%;
   right: 0;
-  background-image: linear-gradient(#A8CA98, #5D8264);
   border-radius: 5px;
   font-size: 12px;
   width: max-content;
@@ -251,5 +286,40 @@ export default {
 
 .want-content:hover {
   color: #415b46;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-image: linear-gradient(#A8CA98, #5D8264);
+  border-radius: 5px;
+  font-size: 12px;
+  width: max-content;
+  line-height: 0.1;
+}
+
+.dropdown-content button {
+  color: beige;
+  padding: 5px 5px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Bookmania-Regular';
+  background: none;
+  border: none;
+  border-radius: 5px;
+  width: 128px;
+  text-align: left;
+  text-align: center;
+  font-size: 12px;
+}
+
+.dropdown-content button:hover {
+  color: #415b46;
+}
+
+.dropdown-content button:focus {
+  outline: none;
 }
 </style>

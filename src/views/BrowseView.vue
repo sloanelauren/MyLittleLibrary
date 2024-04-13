@@ -22,13 +22,17 @@
         {{ book.title }} by {{ book.author_name }}
 
         <div>
-          <button @click="wanttoread" class="want-content">Want to Read</button>
+          <button @click="wantToRead(book)" class="want-content">{{ book.isAdded ? '✔' : 'Want to Read'
+            }}</button>
           <div class="dropdown">
             <button class="dropbtn">▼</button>
             <div class="dropdown-content">
-              <a href="">Want to Read</a>
-              <a href="">Currently Reading</a>
-              <a href="">Read</a>
+              <button @click="wantToRead(book)" class="dropdown-button">{{ book.isAdded ? '✔' : 'Want to Read'
+                }}</button>
+              <button @click="currentRead(book)" class="dropdown-button">{{ book.isAddedCur ? '✔' : 'Currently Reading'
+                }}</button>
+              <button @click="Read(book)" class="dropdown-button">{{ book.isAddedRead ? '✔' : 'Read'
+                }}</button>
             </div>
           </div>
         </div>
@@ -80,6 +84,9 @@ export default {
           if (Array.isArray(book.author_name)) {
             book.author_name = book.author_name.join(', ');
           }
+          book.isAdded = false;
+          book.isAddedCur = false;
+          book.isAddedRead = false;
         });
 
         this.searchResults = response.data.docs;
@@ -89,6 +96,42 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+
+    wantToRead(book) {
+      book.isAdded = !book.isAdded;
+      let books = localStorage.getItem("books");
+      if (books != undefined) {
+        books = JSON.parse(books);
+      } else {
+        books = []
+      }
+      books.push(book);
+      localStorage.setItem("books", JSON.stringify(books));
+    },
+
+    currentRead(book) {
+      book.isAddedCur = !book.isAddedCur;
+      let booksCur = localStorage.getItem("booksCur");
+      if (booksCur != undefined) {
+        booksCur = JSON.parse(booksCur);
+      } else {
+        booksCur = []
+      }
+      booksCur.push(book);
+      localStorage.setItem("booksCur", JSON.stringify(booksCur));
+    },
+
+    Read(book) {
+      book.isAddedRead = !book.isAddedRead;
+      let booksRead = localStorage.getItem("booksRead");
+      if (booksRead != undefined) {
+        booksRead = JSON.parse(booksRead);
+      } else {
+        booksRead = []
+      }
+      booksRead.push(book);
+      localStorage.setItem("booksRead", JSON.stringify(booksRead));
     },
 
     async wanttoread() {
@@ -257,5 +300,28 @@ export default {
 
 .want-content:hover {
   color: #415b46;
+}
+
+.dropdown-content button {
+  color: beige;
+  padding: 5px 5px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Bookmania-Regular';
+  background: none;
+  border: none;
+  border-radius: 5px;
+  width: 128px;
+  text-align: left;
+  text-align: center;
+  font-size: 12px;
+}
+
+.dropdown-content button:hover {
+  color: #415b46;
+}
+
+.dropdown-content button:focus {
+  outline: none;
 }
 </style>
