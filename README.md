@@ -15,7 +15,7 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 To setup MyLittleLibrary begin with cloning the repo.
 
 ```sh
-clone https://github.com/sloanelauren/MyLittleLibrary.git
+git clone https://github.com/sloanelauren/MyLittleLibrary.git
 ```
 
 Then in the terminal run "npm install". 

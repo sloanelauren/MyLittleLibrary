@@ -62,7 +62,7 @@ export default {
     return {
       bestSellers: [],
       searchError: '',
-      loading: false
+      loading: false,
     };
   },
 
@@ -140,7 +140,15 @@ export default {
         booksRead = []
       }
       booksRead.push(book);
+      book.timestamp = new Date().toLocaleString();
       localStorage.setItem("booksRead", JSON.stringify(booksRead));
+
+      const startTimestamp = localStorage.getItem("starttimestamp");
+      if (startTimestamp && new Date(book.timestamp) > new Date(startTimestamp)) {
+        let bookCounter = localStorage.getItem("bookCounter");
+        bookCounter = bookCounter ? parseInt(bookCounter) + 1 : 1;
+        localStorage.setItem("bookCounter", bookCounter.toString());
+      }
     },
 
     shuffle(array) {
@@ -158,8 +166,8 @@ export default {
 
 <style scoped>
 @font-face {
-  font-family: 'Bookmania-Regular';
-  src: url('../assets/Bookmania-Regular.otf') format('truetype');
+  font-family: 'bookmania';
+  src: url('../assets/bookmania.otf') format('truetype');
 }
 
 .welcome-txt {
@@ -182,7 +190,7 @@ export default {
   margin-top: 5px;
   margin-left: 30px;
   padding-top: -15px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   margin-top: -15px;
 }
 
@@ -204,7 +212,7 @@ export default {
   justify-content: flex-start;
   padding-left: 10px;
   padding-bottom: 25px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .book-item {
@@ -232,7 +240,7 @@ export default {
   color: beige;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   font-size: 12px;
 }
 
@@ -257,7 +265,7 @@ export default {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .dropdown-content a:hover {
@@ -279,7 +287,7 @@ export default {
   color: beige;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   width: 102px;
   font-size: 12px;
 }
@@ -305,7 +313,7 @@ export default {
   padding: 5px 5px;
   text-decoration: none;
   display: block;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   background: none;
   border: none;
   border-radius: 5px;

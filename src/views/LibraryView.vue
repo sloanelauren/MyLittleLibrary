@@ -130,15 +130,15 @@ export default {
   mounted() {
     let books = localStorage.getItem("books")
     books = JSON.parse(books)
-    this.wantToReadBooks = books
+    this.wantToReadBooks = books || [];
 
     let booksCur = localStorage.getItem("booksCur")
     booksCur = JSON.parse(booksCur)
-    this.currentRead = booksCur
+    this.currentRead = booksCur || [];
 
     let booksRead = localStorage.getItem("booksRead")
     booksRead = JSON.parse(booksRead)
-    this.Read = booksRead
+    this.Read = booksRead || [];
   },
 
   data() {
@@ -155,8 +155,8 @@ export default {
 
 <style scoped>
 @font-face {
-  font-family: 'Bookmania-Regular';
-  src: url('../assets/Bookmania-Regular.otf') format('truetype');
+  font-family: 'bookmania';
+  src: url('../assets/bookmania.otf') format('truetype');
 }
 
 .library-txt {
@@ -165,7 +165,7 @@ export default {
   margin: auto;
   margin-top: 5px;
   margin-left: 30px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .want-to-read {
@@ -175,7 +175,7 @@ export default {
   margin: auto;
   margin-left: 30px;
   margin-top: -12px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .wantto-container {
@@ -194,7 +194,7 @@ export default {
   align-content: flex-start;
   margin: auto;
   margin-left: 30px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .current-container {
@@ -213,7 +213,7 @@ export default {
   align-content: flex-start;
   margin: auto;
   margin-left: 30px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .read-container {
@@ -234,7 +234,7 @@ export default {
   padding-left: 5px;
   padding-bottom: 5px;
   padding-top: 5px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .book-item {
@@ -262,7 +262,7 @@ export default {
   color: beige;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   font-size: 12px;
 }
 
@@ -288,7 +288,7 @@ export default {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
 }
 
 .dropdown-content a:hover {
@@ -310,7 +310,7 @@ export default {
   color: beige;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   width: 102px;
   font-size: 12px;
 }
@@ -324,7 +324,7 @@ export default {
   padding: 5px 5px;
   text-decoration: none;
   display: block;
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   background: none;
   border: none;
   border-radius: 5px;
@@ -343,7 +343,7 @@ export default {
 }
 
 .empty-txt {
-  font-family: 'Bookmania-Regular';
+  font-family: 'bookmania';
   font-size: 15px;
   margin-left: 30px;
 }
