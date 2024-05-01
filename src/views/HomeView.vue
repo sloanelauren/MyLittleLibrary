@@ -9,7 +9,7 @@
     </div>
 
     <div v-if="loading" class="loading-img">
-      <img src="\src\assets\Loadingscr.gif" alt="Loading..." class="loading-gif">
+      <img src="@/assets/Loadingscr.gif" alt="Loading..." class="loading-gif">
     </div>
 
     <div v-if="bestSellers.length > 0" class="best-sellers results-txt">
