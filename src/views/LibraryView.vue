@@ -16,7 +16,7 @@
         <div v-for="(book, index) in    wantToReadBooks   " :key="index" class="book-item">
           <img v-if="book.cover_i !== undefined" :src="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'"
             alt="Book Cover" style="max-width: 100px;">
-          <img v-else src="\src\assets\NoCoverAvailable1.png" alt="Default Cover" style="max-width: 125px;">
+          <img v-else :src="require('@/assets/NoCoverAvailable1.png')" alt="Default Cover" style="max-width: 125px;">
           {{ book.title }} by {{ book.author_name }}
 
           <div>
